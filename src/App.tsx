@@ -1,24 +1,42 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { useSelector } from "react-redux";
+import { allDataSelector } from "./redux/selectors";
+import "./App.css";
+import { InputBlock } from "./components/input-block.component";
+import { OutputBlock } from "./components/output-block.component";
 
 function App() {
+  const {
+    isLoading,
+    firstFirstName,
+    firstSecondName,
+    secondFirstName,
+    secondSecondName,
+    count,
+    list,
+  } = useSelector(allDataSelector);
+
+  // console.log(
+  //   isLoading,
+  //   firstFirstName,
+  //   firstSecondName,
+  //   secondFirstName,
+  //   secondSecondName,
+  //   count,
+  //   list
+  // );
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <InputBlock />
+      <OutputBlock
+        isLoading={isLoading}
+        firstFirstName={firstFirstName}
+        firstSecondName={firstSecondName}
+        secondFirstName={secondFirstName}
+        secondSecondName={secondSecondName}
+        count={count ? count : 0}
+        list={list ? list : []}
+      />
     </div>
   );
 }
